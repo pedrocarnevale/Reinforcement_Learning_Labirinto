@@ -2,9 +2,11 @@
 Esse projeto tem como objetivo ensinar a máquina a chegar à saída do labirinto, utilizando recompensas e penalidades, ou seja, um **algoritmo de aprendizado por reforço**. O algoritmo utilizado foi o *Q-learning*, onde o agente decide qual ação tomar baseado numa tabela, cujos valores são construídos a partir de recompensas e penalidades. Quando o programa para de ser executado, é gerado um gráfico de linha para análise da evolução do módulo das recompensas ao longo dos episódios.
 
 ## Como executar:
-- Primeiramente, é necessário instalar as bibliotecas *matplotlib*, *numpy* e *pygame*.
-- Depois, é necessário executar o arquivo *GeraLabirinto.py*, onde será gerado um labirinto para o agente se locomover. 
+- Primeiramente, faça download de todos os arquivos.py desse repositório.
+- Além disso, é necessário instalar as bibliotecas *matplotlib*, *numpy* e *pygame*.
+- Depois, é necessário executar o arquivo *GeraLabirinto.py*, onde será gerado um labirinto para o agente se locomover. Esse labirinto é gerado através do algoritmo **randomized depth-first search**.
 - Após esse passo, basta executar o arquivo *RL_Labirinto.py*, e ver o agente aprendendo a achar a saída do labirinto.
+- Os arquivos *indiviuo.py* e *Labirinto.py* não precisam ser executados, pois eles apenas definem os atributos e métodos do agente e do labirinto, respectivamente.
 
 ## Alterando parâmetros:
 
