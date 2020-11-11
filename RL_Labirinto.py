@@ -1,4 +1,5 @@
 import pygame
+import math
 import matplotlib.pyplot as plt
 from individuo import *
 from Labirinto import *
@@ -7,9 +8,9 @@ comprimento=500
 altura=600
 fonte = pygame.font.SysFont("comicsans", 50)
 taxa_aprendizado=0.2
-desconto=0.95 #o quao importante sao as acoes futuras
+desconto=0.95
 episodios=5000
-printar_freq=100
+printar_freq=500
 epsilon=0.5
 INICIO_DECAIMENTO_EPSILON = 1
 FIM_DECAIMENTO_EPSILON = episodios//2
@@ -18,19 +19,18 @@ pygame.display.set_caption('Chegar ao final do labirinto')
 decaimento_epsilon=epsilon/(FIM_DECAIMENTO_EPSILON-INICIO_DECAIMENTO_EPSILON)
 tabuleiro = Labirinto()
 goal=tabuleiro.quadrados[-1]
-NAO_MOVER_PENALIDADE=50*tabuleiro.tam_parede*2
-FINAL_TABULEIRO_RECOMPENSA=300000
-MOVER_PENALIDADE=1
-VISITA_VELHO_PENALIDADE=400*tabuleiro.tam_parede**2
-VISITA_NOVO_RECOMPENSA=4*tabuleiro.tam_parede**2
-estatisticas={'episodio':[], 'media':[],'minimo':[],'maximo':[],'recompensa':[]}
+NAO_MOVER_PENALIDADE=500*(int(math.sqrt(len(tabuleiro.quadrados))))
+FINAL_TABULEIRO_RECOMPENSA=30000*int(math.sqrt(len(tabuleiro.quadrados)))
+VISITA_VELHO_PENALIDADE=400*int(math.sqrt(len(tabuleiro.quadrados)))
+VISITA_NOVO_RECOMPENSA=40*int(math.sqrt(len(tabuleiro.quadrados)))
+estatisticas={'episodio':[],'recompensa':[]}
 
 def gerar_estatisticas():
     estatisticas['episodio'].append(episodio)
     estatisticas['recompensa'].append(recompensa_episodio / 1e7)
 
 def distancia_penalidade(agente):
-    return (goal[0]-agente.x) + (goal[1]-agente.y)
+    return ((goal[0]-agente.x) + (goal[1]-agente.y))*int(math.sqrt(len(tabuleiro.quadrados)))
 
 def redesenhar_janela(texto_episodio,agente):
     janela.fill((0, 0, 0))
@@ -107,7 +107,7 @@ for episodio in range(episodios):
                 else:
                     recompensa_episodio -= distancia_penalidade(agente)
                 if not acabou:
-                    q_maximo_futuro = np.max(tabuleiro.tabela_q[(int(agente.destino[0]/tabuleiro.tam_parede) - 1,int(agente.destino[1]/tabuleiro.tam_parede) - 1)])  # maior estado futuro
+                    q_maximo_futuro = np.max(tabuleiro.tabela_q[(int(agente.destino[0]/tabuleiro.tam_parede) - 1,int(agente.destino[1]/tabuleiro.tam_parede) - 1)])
                     q_atual = tabuleiro.tabela_q[(int(agente.x/tabuleiro.tam_parede) - 1,int(agente.y/tabuleiro.tam_parede) - 1,acao)]
                     novo_q = (1 - taxa_aprendizado) * q_atual + taxa_aprendizado * (recompensa_episodio + desconto * q_maximo_futuro)
                     tabuleiro.tabela_q[(int(agente.x/tabuleiro.tam_parede) - 1,int(agente.y/tabuleiro.tam_parede) - 1,acao)] =novo_q
