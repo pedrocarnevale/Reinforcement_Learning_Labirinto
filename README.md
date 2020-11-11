@@ -6,7 +6,6 @@ Esse projeto tem como objetivo ensinar a máquina a chegar à saída do labirint
 - Além disso, é necessário instalar as bibliotecas *matplotlib*, *numpy* e *pygame*.
 - Depois, é necessário executar o arquivo *GeraLabirinto.py*, onde será gerado um labirinto para o agente se locomover. Esse labirinto é gerado através do algoritmo **randomized depth-first search**.
 - Após esse passo, basta executar o arquivo *RL_Labirinto.py*, e ver o agente aprendendo a achar a saída do labirinto.
-- Os arquivos *indiviuo.py* e *Labirinto.py* não precisam ser executados, pois eles apenas definem os atributos e métodos do agente e do labirinto, respectivamente.
 
 ## Alterando parâmetros:
 
@@ -32,4 +31,6 @@ Esse projeto tem como objetivo ensinar a máquina a chegar à saída do labirint
 	- **VISITA_VELHO_PENALIDADE**: Penalidade recebida pelo agente ao visitar um espaço já visitado anteriormente.
 	- **VISITA_NOVO_RECOMPENSA**: Recompensa recebida pelo agente ao visitar um novo espaço, estimulando o agente a ir para novos lugares do labirinto.
 	- **distancia_penalidade()**: Função que retorna a soma da diferença das coordenadas do agente e da saída do labirinto, que funciona como penalidade para estimular o agente a ficar por perto da saída do labirinto. 
-	 
+ ## Observações:
+ - Os arquivos *indiviuo.py* e *Labirinto.py* não precisam ser executados, pois eles apenas definem os atributos e métodos do agente e do labirinto, respectivamente. No entanto, eles devem estar no diretório dos demais arquivos para que o programa consiga ser executado.
+ - As funções implementadas para recompensas e penalidades funcionam muito bem para labirintos de tamanho até *10x10*, pois para labirintos maiores, a saída do labirinto fica muito distante e o agente fica estagnado em um máximo local. Isso é um lado negativo de algoritmos de aprendizagem por reforço como um todo, pois se o objetivo do agente for muito difícil de ser atingido, este não saberá qual ação tomar.
