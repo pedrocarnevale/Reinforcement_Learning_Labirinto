@@ -4,9 +4,9 @@ import pickle
 pygame.init()
 comprimento=500
 altura=600
-NUM_LINHAS_LABIRINTO=10
-NUM_COLUNAS_LABIRINTO=10
-TAMANHO_LADO_PAREDE=40
+NUM_LINHAS_LABIRINTO=20
+NUM_COLUNAS_LABIRINTO=20
+TAMANHO_LADO_PAREDE=20
 janela=pygame.display.set_mode((comprimento,altura))
 pygame.display.set_caption('Labirinto')
 clock=pygame.time.Clock()
@@ -82,7 +82,6 @@ def main():
         clock.tick(60)
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                print(quadrados)
                 run=False
                 pygame.quit()
                 quit()

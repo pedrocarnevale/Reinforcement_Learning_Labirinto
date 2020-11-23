@@ -68,4 +68,3 @@ class Labirinto:
         num_linhas=int(self.quadrados[-1][1]/self.tam_parede)
         num_colunas=int(self.quadrados[-1][0]/self.tam_parede)
         self.tabela_q=np.random.uniform(low=-1,high=1,size=(num_linhas,num_colunas,4))
-        self.tabela_q_pique_esconde = np.random.uniform(low=-1, high=1, size=(num_linhas, num_colunas,num_linhas, num_colunas, 4))
