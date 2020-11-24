@@ -21,7 +21,7 @@ Esse projeto tem como objetivo ensinar a máquina a chegar à saída do labirint
 	- **episódios**: Número máximo de episódios antes do programa parar de executar
 	- **printar_freq**: Determina a cada quantos episódios a interface gráfica irá apresentar o deslocamento do agente.
 	- **epsilon**: Define a probabilidade inicial do agente executar uma ação aleatória ou baseada nos valores da tabela do algoritmo.
-	- **INICIO_DECAIMENTO_EPSILON e FIM_DECAIMENTO_EPSILON**: Indicam, respectivamente, em qual episódio o epsilon começará a diminuir de valor e em qual terminará. O objetivo do epsilon diminuir ao longo dos episódios é de executar menos ações aleatórias e mais ações baseadas na tabela do algoritmo.
+	- **INICIO_DECAIMENTO_EPSILON e FIM_DECAIMENTO_EPSILON**: Indicam o conjunto de episódios nos quais o valor de epsilon será decrementado.
 
 ## Alterando recompensas e penalidades:
 - Os valores das recompensas e penalidades dos agentes são definidos através de funções. Essas funções são empíricas, e tem como objetivo facilitar a aprendizagem do agente. Logo, os seus valores precisam ser testados até que seja atingido um desempenho satisfatório do agente. No arquivo *RL_Labirinto.py*, as funções e parâmetros que determinam as recompensas são as seguintes:
@@ -33,4 +33,3 @@ Esse projeto tem como objetivo ensinar a máquina a chegar à saída do labirint
 	- **distancia_penalidade()**: Função que retorna a soma da diferença das coordenadas do agente e da saída do labirinto, que funciona como penalidade para estimular o agente a ficar por perto da saída do labirinto. 
  ## Observações:
  - Os arquivos *indiviuo.py* e *Labirinto.py* não precisam ser executados, pois eles apenas definem os atributos e métodos do agente e do labirinto, respectivamente. No entanto, eles devem estar no diretório dos demais arquivos para que o programa consiga ser executado.
- - As funções implementadas para recompensas e penalidades funcionam muito bem para labirintos de tamanho até *10x10*, pois para labirintos maiores, a saída do labirinto fica muito distante e o agente fica estagnado em um máximo local. Isso é um lado negativo de algoritmos de aprendizagem por reforço como um todo, pois se o objetivo do agente for muito difícil de ser atingido, este não saberá qual ação tomar.
